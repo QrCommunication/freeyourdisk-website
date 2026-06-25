@@ -46,7 +46,7 @@ export default function Download({ dict }: { dict: Dictionary }) {
           <p className="mx-auto mt-4 max-w-xl text-[var(--color-muted)]">{t.sub}</p>
         </Reveal>
 
-        <div className="mt-12 grid gap-4 md:grid-cols-3">
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {DOWNLOADS.map((d, i) => (
             <Reveal key={d.format} delay={i * 0.06}>
               <div className="card edge-top flex h-full flex-col p-6">
@@ -73,8 +73,12 @@ export default function Download({ dict }: { dict: Dictionary }) {
           ))}
         </div>
 
+        <Reveal delay={0.08}>
+          <p className="mt-6 text-center text-sm text-[var(--color-faint)]">{t.macosHint}</p>
+        </Reveal>
+
         <Reveal delay={0.1}>
-          <div className="mt-8 flex flex-col items-center justify-between gap-3 rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface)] px-6 py-4 text-sm text-[var(--color-muted)] sm:flex-row">
+          <div className="mt-6 flex flex-col items-center justify-between gap-3 rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface)] px-6 py-4 text-sm text-[var(--color-muted)] sm:flex-row">
             <span>
               {t.recommendedPre}{" "}
               <code className="font-mono text-[var(--color-ink)]">nvme-cli</code>,{" "}

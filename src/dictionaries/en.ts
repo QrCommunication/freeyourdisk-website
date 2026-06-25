@@ -66,21 +66,24 @@ const en: Dictionary = {
   download: {
     eyebrow: "// Download",
     titleA: "Install FreeYourDisk",
-    sub: "Free and open-source. Pick the format for your distribution.",
+    sub: "Free and open-source. Pick the format for your system.",
     cta: "Download",
     recommendedPre: "Recommended for disk health:",
     releaseNotes: "Release notes & checksums",
+    macosHint:
+      "macOS: unsigned Apple Silicon build (beta). On first launch, right-click the app › Open.",
     labels: {
       AppImage: "Universal · all distributions",
       ".deb": "Debian · Ubuntu",
       ".rpm": "Fedora · RHEL",
+      DMG: "macOS · Apple Silicon (unsigned)",
     },
   },
   faq: {
     eyebrow: "// Questions",
     title: "Everything you need to know",
     items: [
-      { q: "Which distributions does FreeYourDisk run on?", a: "All recent Linux distributions via the AppImage. Native .deb (Debian, Ubuntu) and .rpm (Fedora, RHEL) packages are also provided. The UI relies on WebKitGTK." },
+      { q: "Which systems does FreeYourDisk run on?", a: "All recent Linux distributions via the AppImage, plus native .deb (Debian, Ubuntu) and .rpm (Fedora, RHEL) packages. A macOS build (Apple Silicon) is also available — an unsigned beta for now." },
       { q: "Can my files be deleted by mistake?", a: "Scans are read-only, every deletion shows an exact preview and goes to the recoverable trash by default. Deletable zones are whitelisted and uncommitted git worktrees are never touched." },
       { q: "Does the app need root?", a: "Not for everyday use. The UI runs as a normal user; a minimal helper is invoked via Polkit only for the rare privileged actions (NVMe SMART reads, /var/tmp, apt/snap packages)." },
       { q: "Is it free and open-source?", a: "Yes. FreeYourDisk is released under the GPL-3.0-or-later license. The full code is on GitHub." },

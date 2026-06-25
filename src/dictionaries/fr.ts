@@ -65,21 +65,24 @@ const fr = {
   download: {
     eyebrow: "// Télécharger",
     titleA: "Installez FreeYourDisk",
-    sub: "Gratuit et open-source. Choisissez le format adapté à votre distribution.",
+    sub: "Gratuit et open-source. Choisissez le format adapté à votre système.",
     cta: "Télécharger",
     recommendedPre: "Recommandé pour la santé des disques :",
     releaseNotes: "Notes de version & sommes de contrôle",
+    macosHint:
+      "macOS : build Apple Silicon non signé (bêta). Au 1er lancement, clic droit sur l'app › Ouvrir.",
     labels: {
       AppImage: "Universel · toutes distributions",
       ".deb": "Debian · Ubuntu",
       ".rpm": "Fedora · RHEL",
+      DMG: "macOS · Apple Silicon (non signé)",
     } as Record<string, string>,
   },
   faq: {
     eyebrow: "// Questions",
     title: "Tout ce qu'il faut savoir",
     items: [
-      { q: "Sur quelles distributions FreeYourDisk fonctionne-t-il ?", a: "Toutes les distributions Linux récentes via l'AppImage. Des paquets natifs .deb (Debian, Ubuntu) et .rpm (Fedora, RHEL) sont aussi fournis. L'interface s'appuie sur WebKitGTK." },
+      { q: "Sur quels systèmes FreeYourDisk fonctionne-t-il ?", a: "Toutes les distributions Linux récentes via l'AppImage, plus des paquets natifs .deb (Debian, Ubuntu) et .rpm (Fedora, RHEL). Un build macOS (Apple Silicon) est aussi disponible — bêta non signée pour l'instant." },
       { q: "Mes fichiers peuvent-ils être supprimés par erreur ?", a: "Les scans sont en lecture seule, chaque suppression montre un aperçu exact et passe par la corbeille récupérable par défaut. Les zones supprimables sont sur liste blanche et les worktrees git non commités ne sont jamais touchés." },
       { q: "L'application a-t-elle besoin des droits root ?", a: "Non pour l'usage courant. L'interface tourne en utilisateur normal ; un helper minimal est invoqué via Polkit uniquement pour les rares actions privilégiées (lecture SMART NVMe, /var/tmp, paquets apt/snap)." },
       { q: "Est-ce gratuit et open-source ?", a: "Oui. FreeYourDisk est publié sous licence GPL-3.0-or-later. Le code complet est sur GitHub." },

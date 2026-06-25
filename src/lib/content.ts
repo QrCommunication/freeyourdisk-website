@@ -11,6 +11,7 @@ const FILE = {
   appimage: `FreeYourDisk_${VERSION}_amd64.AppImage`,
   deb: `FreeYourDisk_${VERSION}_amd64.deb`,
   rpm: `FreeYourDisk-${VERSION}-1.x86_64.rpm`,
+  dmg: `FreeYourDisk_${VERSION}_aarch64.dmg`,
 };
 
 export type Locale = "fr" | "en";
@@ -63,6 +64,13 @@ export const DOWNLOADS: DownloadLink[] = [
     size: "4.1 MB",
     href: `${ASSET}/${FILE.rpm}`,
     install: `sudo dnf install ./${FILE.rpm}`,
+  },
+  {
+    format: "DMG",
+    size: "4.2 MB",
+    href: `${ASSET}/${FILE.dmg}`,
+    // Unsigned build: clear the quarantine flag (or right-click → Open once).
+    install: `xattr -dr com.apple.quarantine /Applications/FreeYourDisk.app`,
   },
 ];
 
