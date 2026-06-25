@@ -53,7 +53,7 @@ export default function Nav({ dict, locale }: { dict: Dictionary; locale: Locale
             <Link
               key={l.href}
               href={l.href}
-              className="rounded-lg px-3 py-2 text-sm text-[var(--color-muted)] transition-colors hover:text-[var(--color-ink)]"
+              className="rounded-lg px-3 py-2 text-sm text-[var(--color-muted)] transition-colors hover:text-ink"
             >
               {l.label}
             </Link>
@@ -70,8 +70,8 @@ export default function Nav({ dict, locale }: { dict: Dictionary; locale: Locale
                 aria-label={l === "fr" ? "Français" : "English"}
                 className={`rounded-md px-2 py-1 uppercase transition-colors ${
                   l === locale
-                    ? "bg-[var(--color-elevated)] text-[var(--color-ink)]"
-                    : "text-[var(--color-faint)] hover:text-[var(--color-ink)]"
+                    ? "bg-[var(--color-elevated)] text-ink"
+                    : "text-[var(--color-faint)] hover:text-ink"
                 }`}
               >
                 {l}
@@ -84,7 +84,7 @@ export default function Nav({ dict, locale }: { dict: Dictionary; locale: Locale
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
-            className="hidden size-9 items-center justify-center rounded-lg text-[var(--color-muted)] transition-colors hover:bg-[var(--color-elevated)] hover:text-[var(--color-ink)] sm:flex"
+            className="hidden size-9 items-center justify-center rounded-lg text-[var(--color-muted)] transition-colors hover:bg-[var(--color-elevated)] hover:text-ink sm:flex"
           >
             <GithubLogo size={20} />
           </a>
@@ -98,7 +98,7 @@ export default function Nav({ dict, locale }: { dict: Dictionary; locale: Locale
           <button
             onClick={() => setOpen((v) => !v)}
             aria-label="Menu"
-            className="flex size-9 items-center justify-center rounded-lg text-[var(--color-ink)] md:hidden"
+            className="flex size-9 items-center justify-center rounded-lg text-ink md:hidden"
           >
             {open ? <X size={20} /> : <List size={20} />}
           </button>
@@ -112,7 +112,7 @@ export default function Nav({ dict, locale }: { dict: Dictionary; locale: Locale
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="block rounded-lg px-3 py-2.5 text-sm text-[var(--color-muted)] transition-colors hover:bg-[var(--color-elevated)] hover:text-[var(--color-ink)]"
+              className="block rounded-lg px-3 py-2.5 text-sm text-[var(--color-muted)] transition-colors hover:bg-[var(--color-elevated)] hover:text-ink"
             >
               {l.label}
             </Link>

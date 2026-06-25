@@ -19,7 +19,7 @@ export default function Hero({ dict, locale }: { dict: Dictionary; locale: Local
             target="_blank"
             rel="noopener noreferrer"
             style={d(0)}
-            className="enter inline-flex items-center gap-2 rounded-full border border-[var(--color-line)] bg-[var(--color-surface)] px-3 py-1.5 text-xs text-[var(--color-muted)] transition-colors hover:text-[var(--color-ink)]"
+            className="enter inline-flex items-center gap-2 rounded-full border border-[var(--color-line)] bg-[var(--color-surface)] px-3 py-1.5 text-xs text-[var(--color-muted)] transition-colors hover:text-ink"
           >
             <span className="size-1.5 rounded-full bg-[var(--color-teal)]" />
             {h.badge} · v{VERSION}
@@ -54,7 +54,7 @@ export default function Hero({ dict, locale }: { dict: Dictionary; locale: Local
               href={REPO}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl border border-[var(--color-line-strong)] px-5 py-3 font-medium text-[var(--color-ink)] transition-colors hover:bg-[var(--color-elevated)]"
+              className="inline-flex items-center gap-2 rounded-xl border border-[var(--color-line-strong)] px-5 py-3 font-medium text-ink transition-colors hover:bg-[var(--color-elevated)]"
             >
               <GithubLogo size={18} />
               {h.ctaSource}

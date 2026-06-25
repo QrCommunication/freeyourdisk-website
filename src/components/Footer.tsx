@@ -22,7 +22,7 @@ export default function Footer({ dict, locale }: { dict: Dictionary; locale: Loc
               href={REPO}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-5 inline-flex items-center gap-2 rounded-lg border border-[var(--color-line)] px-3 py-2 text-sm text-[var(--color-muted)] transition-colors hover:text-[var(--color-ink)]"
+              className="mt-5 inline-flex items-center gap-2 rounded-lg border border-[var(--color-line)] px-3 py-2 text-sm text-[var(--color-muted)] transition-colors hover:text-ink"
             >
               <GithubLogo size={18} />
               QrCommunication/FreeYourDisk
@@ -31,7 +31,7 @@ export default function Footer({ dict, locale }: { dict: Dictionary; locale: Loc
 
           {f.cols.map((col) => (
             <div key={col.title}>
-              <h3 className="text-sm font-semibold text-[var(--color-ink)]">{col.title}</h3>
+              <h3 className="text-sm font-semibold text-ink">{col.title}</h3>
               <ul className="mt-4 space-y-2.5">
                 {col.links.map((l) =>
                   l.external ? (
@@ -40,7 +40,7 @@ export default function Footer({ dict, locale }: { dict: Dictionary; locale: Loc
                         href={l.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm text-[var(--color-muted)] transition-colors hover:text-[var(--color-ink)]"
+                        className="text-sm text-[var(--color-muted)] transition-colors hover:text-ink"
                       >
                         {l.label}
                       </a>
@@ -49,7 +49,7 @@ export default function Footer({ dict, locale }: { dict: Dictionary; locale: Loc
                     <li key={l.label}>
                       <Link
                         href={`/${locale}${l.href}`}
-                        className="text-sm text-[var(--color-muted)] transition-colors hover:text-[var(--color-ink)]"
+                        className="text-sm text-[var(--color-muted)] transition-colors hover:text-ink"
                       >
                         {l.label}
                       </Link>

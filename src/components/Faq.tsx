@@ -27,7 +27,7 @@ export default function Faq({ dict }: { dict: Dictionary }) {
                   aria-expanded={on}
                   className="flex w-full items-center justify-between gap-4 py-5 text-left"
                 >
-                  <span className="text-base font-medium text-[var(--color-ink)] md:text-lg">{item.q}</span>
+                  <span className="text-base font-medium text-ink md:text-lg">{item.q}</span>
                   <span
                     className="shrink-0 text-[var(--color-teal)] transition-transform duration-300 ease-out"
                     style={{ transform: on ? "rotate(45deg)" : "rotate(0)" }}

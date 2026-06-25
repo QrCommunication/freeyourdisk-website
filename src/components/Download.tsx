@@ -26,7 +26,7 @@ function Cmd({ value }: { value: string }) {
       {copied ? (
         <Check size={15} weight="bold" className="shrink-0 text-[var(--color-teal)]" />
       ) : (
-        <Copy size={15} className="shrink-0 text-[var(--color-faint)] group-hover/cmd:text-[var(--color-ink)]" />
+        <Copy size={15} className="shrink-0 text-[var(--color-faint)] group-hover/cmd:text-ink" />
       )}
     </button>
   );
@@ -81,14 +81,14 @@ export default function Download({ dict }: { dict: Dictionary }) {
           <div className="mt-6 flex flex-col items-center justify-between gap-3 rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface)] px-6 py-4 text-sm text-[var(--color-muted)] sm:flex-row">
             <span>
               {t.recommendedPre}{" "}
-              <code className="font-mono text-[var(--color-ink)]">nvme-cli</code>,{" "}
-              <code className="font-mono text-[var(--color-ink)]">smartmontools</code>.
+              <code className="font-mono text-ink">nvme-cli</code>,{" "}
+              <code className="font-mono text-ink">smartmontools</code>.
             </span>
             <a
               href={RELEASE}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 font-medium text-[var(--color-ink)] hover:text-[var(--color-teal)]"
+              className="inline-flex items-center gap-1 font-medium text-ink hover:text-[var(--color-teal)]"
             >
               {t.releaseNotes}
               <ArrowUpRight size={15} />

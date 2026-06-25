@@ -45,7 +45,7 @@ export default function Screenshots({ dict, locale }: { dict: Dictionary; locale
                         on ? "bg-[var(--color-teal)]" : "bg-[var(--color-faint)]"
                       }`}
                     />
-                    <span className={`text-sm font-medium ${on ? "text-[var(--color-ink)]" : "text-[var(--color-muted)]"}`}>
+                    <span className={`text-sm font-medium ${on ? "text-ink" : "text-[var(--color-muted)]"}`}>
                       {s.title}
                     </span>
                   </div>

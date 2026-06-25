@@ -20,7 +20,7 @@ export default function Legal({
       <article className="mx-auto max-w-3xl">
         <Link
           href={`/${locale}`}
-          className="inline-flex items-center gap-1.5 text-sm text-[var(--color-muted)] transition-colors hover:text-[var(--color-ink)]"
+          className="inline-flex items-center gap-1.5 text-sm text-[var(--color-muted)] transition-colors hover:text-ink"
         >
           <ArrowLeft size={15} />
           {dict.legal.back}
@@ -29,8 +29,8 @@ export default function Legal({
         <h1 className="mt-6 text-4xl font-semibold tracking-tight md:text-5xl">{page.title}</h1>
         <p className="mt-3 text-sm text-[var(--color-faint)]">{dict.legal.updated}</p>
 
-        <div className="mt-10 space-y-3 leading-relaxed text-[var(--color-muted)] [&_h2]:mt-10 [&_h2]:mb-3 [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:text-[var(--color-ink)] [&_li]:my-1 [&_ul]:list-disc [&_ul]:space-y-1 [&_ul]:pl-5">
-          {intro && <p className="text-lg text-[var(--color-ink)]">{intro}</p>}
+        <div className="mt-10 space-y-3 leading-relaxed text-[var(--color-muted)] [&_h2]:mt-10 [&_h2]:mb-3 [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:text-ink [&_li]:my-1 [&_ul]:list-disc [&_ul]:space-y-1 [&_ul]:pl-5">
+          {intro && <p className="text-lg text-ink">{intro}</p>}
           {page.blocks.map((b) => (
             <section key={b.h}>
               <h2>{b.h}</h2>

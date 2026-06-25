@@ -20,7 +20,7 @@ export default function Safety({ dict }: { dict: Dictionary }) {
                 <div className="border-t border-[var(--color-line)] pt-5">
                   <div className="flex items-center gap-2.5 text-[var(--color-teal)]">
                     <Icon name={item.icon} size={20} weight="bold" />
-                    <h3 className="text-base font-semibold text-[var(--color-ink)]">{item.title}</h3>
+                    <h3 className="text-base font-semibold text-ink">{item.title}</h3>
                   </div>
                   <p className="mt-2 leading-relaxed text-[var(--color-muted)]">{item.body}</p>
                 </div>
