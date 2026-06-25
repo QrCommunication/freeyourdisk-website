@@ -1,0 +1,169 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ *
+ * Design tokens — brand pulled from the app icon: a teal→indigo
+ * gradient on a near-black slate. One accent (teal), no purple slop.
+ * ------------------------------------------------------------------ */
+@theme {
+  --color-base: #080b11;
+  --color-surface: #0e131b;
+  --color-elevated: #161e2a;
+  --color-line: oklch(1 0 0 / 0.09);
+  --color-line-strong: oklch(1 0 0 / 0.16);
+
+  --color-ink: #e9eff6;
+  --color-muted: #99a6b4;
+  --color-faint: #5d6776;
+
+  --color-teal: #20c9d6;
+  --color-teal-bright: #43dbe6;
+  --color-indigo: #4138e6;
+  --color-gold: #f2b441;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: var(--color-base);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: color-mix(in oklch, var(--color-teal) 35%, transparent);
+  color: #fff;
+}
+
+/* Subtle scrollbar so it doesn't fight the dark surface */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-elevated);
+  border-radius: 999px;
+  border: 2px solid var(--color-base);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #20283400;
+  background-color: #222c3a;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-teal);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@layer utilities {
+  .gradient-text {
+    background: linear-gradient(
+      100deg,
+      var(--color-teal-bright),
+      var(--color-indigo) 85%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .brand-gradient {
+    background: linear-gradient(150deg, var(--color-teal) 0%, var(--color-indigo) 100%);
+  }
+
+  /* Animated mesh glow behind the hero — fixed + pointer-none for perf */
+  .mesh {
+    position: absolute;
+    inset: -20% -10% auto -10%;
+    height: 80vh;
+    pointer-events: none;
+    z-index: 0;
+    background:
+      radial-gradient(40% 50% at 22% 18%, color-mix(in oklch, var(--color-teal) 28%, transparent), transparent 70%),
+      radial-gradient(45% 55% at 80% 30%, color-mix(in oklch, var(--color-indigo) 30%, transparent), transparent 72%);
+    filter: blur(40px);
+    opacity: 0.7;
+  }
+
+  .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: 1.25rem;
+  }
+
+  /* Faint top edge highlight — physical refraction on dark cards */
+  .edge-top {
+    box-shadow: inset 0 1px 0 0 oklch(1 0 0 / 0.06);
+  }
+
+  .grain {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Scroll reveal — visible by default (no-JS / SEO safe). JS "arms" the hidden
+   * state only once it can also reveal it on scroll, so content is never
+   * permanently hidden. */
+  [data-reveal][data-armed="true"] {
+    opacity: 0;
+    transform: translateY(var(--rv-y, 16px));
+    transition:
+      opacity 0.6s var(--ease-out-strong),
+      transform 0.6s var(--ease-out-strong);
+    transition-delay: var(--rv-delay, 0s);
+  }
+  [data-reveal][data-armed="true"][data-shown="true"] {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Load-time entrance — pure CSS animation, so it plays (and ends visible)
+   * even without JS. Used above the fold. */
+  .enter {
+    animation: enter-up 0.7s var(--ease-out-strong) both;
+    animation-delay: var(--enter-delay, 0s);
+  }
+  @keyframes enter-up {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .enter {
+    animation: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
