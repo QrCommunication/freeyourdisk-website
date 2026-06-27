@@ -1,6 +1,13 @@
 import type { CSSProperties } from "react";
 import Link from "next/link";
-import { DownloadSimple, GithubLogo, ArrowRight } from "@phosphor-icons/react/dist/ssr";
+import {
+  DownloadSimple,
+  GithubLogo,
+  ArrowRight,
+  LinuxLogo,
+  AppleLogo,
+  WindowsLogo,
+} from "@phosphor-icons/react/dist/ssr";
 import BrowserFrame from "./BrowserFrame";
 import type { Dictionary } from "@/dictionaries";
 import { REPO, VERSION, shotSrc, type Locale } from "@/lib/content";
@@ -71,6 +78,25 @@ export default function Hero({ dict, locale }: { dict: Dictionary; locale: Local
                 {t}
               </span>
             ))}
+          </div>
+
+          <div
+            style={d(0.32)}
+            className="enter mt-7 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm"
+          >
+            <span className="text-[var(--color-faint)]">{h.availableOn}</span>
+            <span className="flex items-center gap-1.5 text-[var(--color-muted)]">
+              <LinuxLogo size={18} weight="fill" aria-hidden className="text-ink" />
+              Linux
+            </span>
+            <span className="flex items-center gap-1.5 text-[var(--color-muted)]">
+              <AppleLogo size={18} weight="fill" aria-hidden className="text-ink" />
+              macOS
+            </span>
+            <span className="flex items-center gap-1.5 text-[var(--color-muted)]">
+              <WindowsLogo size={18} weight="fill" aria-hidden className="text-ink" />
+              Windows
+            </span>
           </div>
         </div>
 

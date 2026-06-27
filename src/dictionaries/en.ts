@@ -4,9 +4,9 @@ import type { Dictionary } from "./fr";
 const en: Dictionary = {
   langName: "English",
   meta: {
-    title: "FreeYourDisk — Free your Linux disk, safely",
+    title: "FreeYourDisk — Free your disk, safely",
     description:
-      "A Linux desktop utility that scans your disk and safely reclaims space: caches, large files, applications, task manager and disk health — around a 3D usage donut. Open-source, GPL-3.0.",
+      "A cross-platform desktop utility for Linux, macOS and Windows that scans your disk and safely reclaims space: caches, large files, applications, task manager and disk health — around a 3D usage donut. Open-source, GPL-3.0.",
   },
   nav: {
     features: "Features",
@@ -20,10 +20,11 @@ const en: Dictionary = {
     badge: "Open-source · GPL-3.0",
     titleA: "Free your disk,",
     titleB: "safely.",
-    sub: "A Linux desktop utility that scans your disk and reclaims space without risk — caches, large files, applications, task manager and disk health, around a 3D usage donut. Trash by default, zero blind deletion.",
-    ctaDownload: "Download for Linux",
+    sub: "A cross-platform desktop utility for Linux, macOS and Windows that scans your disk and reclaims space without risk — caches, large files, applications, task manager and disk health, around a 3D usage donut. Trash by default, zero blind deletion.",
+    ctaDownload: "Download",
     ctaSource: "Source code",
     trust: ["No root privileges", "No telemetry", "100% local"],
+    availableOn: "Available on",
   },
   features: {
     eyebrow: "// What it does",
@@ -32,7 +33,7 @@ const en: Dictionary = {
     items: [
       { icon: "ChartDonut", wide: true, title: "Unified scan, 3D donut", body: "One click runs every scan and the file-type breakdown. A 3D donut shows used, reclaimable and free space — the green layer grows as you tick items." },
       { icon: "Broom", wide: false, title: "Cleanup categories", body: "Temporary files, large files, stale git worktrees, dev caches (node_modules, target, .next…) and regenerable app & browser caches." },
-      { icon: "Package", wide: false, title: "Applications", body: "An apt / flatpak / snap / AppImage inventory ranked by space, updates surfaced on open, batch uninstall and update. Essential system packages are protected." },
+      { icon: "Package", wide: false, title: "Applications", body: "An application inventory ranked by space — apt / flatpak / snap / AppImage on Linux, the registry & Microsoft Store on Windows — updates surfaced on open, batch uninstall and update. Essential system components are protected." },
       { icon: "Gauge", wide: true, title: "Task manager", body: "Real-time CPU / RAM / swap graph, per-core utilization heatmap, temperature, a sortable process table, and an emergency “kill the biggest hog.” Configurable global hotkey." },
       { icon: "Heartbeat", wide: false, title: "Disk health", body: "Per-disk SMART via nvme-cli (NVMe) or smartctl (SATA) — health, power-on hours, temperature — with real-time throughput graphs. Missing tools install in one click for your distribution." },
       { icon: "ShieldCheck", wide: false, title: "Safe by design", body: "Read-only scans, a preview before deletion, trash by default, a zone whitelist, and git actions that never touch uncommitted work." },
@@ -70,20 +71,27 @@ const en: Dictionary = {
     cta: "Download",
     recommendedPre: "Recommended for disk health:",
     releaseNotes: "Release notes & checksums",
-    macosHint:
-      "macOS: unsigned Apple Silicon build (beta). On first launch, right-click the app › Open.",
+    unsignedHint:
+      "macOS and Windows builds are unsigned: on macOS, right-click the app › Open; on Windows, click “More info” › “Run anyway”.",
+    os: { linux: "Linux", macos: "macOS", windows: "Windows" },
+    osNote: {
+      linux: "x86-64",
+      macos: "Apple Silicon (arm64)",
+      windows: "x64",
+    },
     labels: {
       AppImage: "Universal · all distributions",
       ".deb": "Debian · Ubuntu",
       ".rpm": "Fedora · RHEL",
       DMG: "macOS · Apple Silicon (unsigned)",
+      ".exe": "Windows 10 / 11 · installer",
     },
   },
   faq: {
     eyebrow: "// Questions",
     title: "Everything you need to know",
     items: [
-      { q: "Which systems does FreeYourDisk run on?", a: "All recent Linux distributions via the AppImage, plus native .deb (Debian, Ubuntu) and .rpm (Fedora, RHEL) packages. A macOS build (Apple Silicon) is also available — an unsigned beta for now." },
+      { q: "Which systems does FreeYourDisk run on?", a: "Linux, macOS and Windows. On Linux: a universal AppImage plus native .deb (Debian, Ubuntu) and .rpm (Fedora, RHEL) packages. On Windows: an installer (Windows 10/11, x64). On macOS: an Apple Silicon build. The macOS and Windows builds are unsigned betas for now." },
       { q: "Can my files be deleted by mistake?", a: "Scans are read-only, every deletion shows an exact preview and goes to the recoverable trash by default. Deletable zones are whitelisted and uncommitted git worktrees are never touched." },
       { q: "Does the app need root?", a: "Not for everyday use. The UI runs as a normal user; a minimal helper is invoked via Polkit only for the rare privileged actions (NVMe SMART reads, /var/tmp, apt/snap packages)." },
       { q: "Is it free and open-source?", a: "Yes. FreeYourDisk is released under the GPL-3.0-or-later license. The full code is on GitHub." },
@@ -91,7 +99,7 @@ const en: Dictionary = {
     ],
   },
   footer: {
-    tagline: "Free your Linux disk, safely. Open-source under the GPL-3.0 license.",
+    tagline: "Free your disk, safely. Open-source under the GPL-3.0 license.",
     cols: [
       { title: "Product", links: [
         { label: "Features", href: "#features", external: false },
@@ -111,7 +119,7 @@ const en: Dictionary = {
       ]},
     ],
     rights: "GPL-3.0-or-later",
-    noData: "Built for Linux. No data collected.",
+    noData: "Built for Linux, macOS and Windows. No data collected.",
   },
   legalLinks: { notice: "Legal notice", privacy: "Privacy" },
   legal: {

@@ -1,10 +1,25 @@
 "use client";
 
 import { useState } from "react";
-import { DownloadSimple, Copy, Check, ArrowUpRight } from "@phosphor-icons/react";
-import { DOWNLOADS, RELEASE, VERSION } from "@/lib/content";
+import {
+  DownloadSimple,
+  Copy,
+  Check,
+  ArrowUpRight,
+  LinuxLogo,
+  AppleLogo,
+  WindowsLogo,
+  type Icon,
+} from "@phosphor-icons/react";
+import { DOWNLOADS, OS_ORDER, RELEASE, VERSION, type OS } from "@/lib/content";
 import type { Dictionary } from "@/dictionaries";
 import Reveal from "./Reveal";
+
+const OS_ICON: Record<OS, Icon> = {
+  linux: LinuxLogo,
+  macos: AppleLogo,
+  windows: WindowsLogo,
+};
 
 function Cmd({ value }: { value: string }) {
   const [copied, setCopied] = useState(false);
@@ -20,7 +35,7 @@ function Cmd({ value }: { value: string }) {
   return (
     <button
       onClick={copy}
-      className="group/cmd mt-4 flex w-full items-center gap-2 rounded-lg border border-[var(--color-line)] bg-[var(--color-base)] px-3 py-2.5 text-left transition-colors hover:border-[var(--color-line-strong)]"
+      className="group/cmd mt-4 flex w-full cursor-pointer items-center gap-2 rounded-lg border border-[var(--color-line)] bg-[var(--color-base)] px-3 py-2.5 text-left transition-colors hover:border-[var(--color-line-strong)]"
     >
       <code className="flex-1 truncate font-mono text-xs text-[var(--color-muted)]">{value}</code>
       {copied ? (
@@ -46,35 +61,62 @@ export default function Download({ dict }: { dict: Dictionary }) {
           <p className="mx-auto mt-4 max-w-xl text-[var(--color-muted)]">{t.sub}</p>
         </Reveal>
 
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {DOWNLOADS.map((d, i) => (
-            <Reveal key={d.format} delay={i * 0.06}>
-              <div className="card edge-top flex h-full flex-col p-6">
-                <div className="flex items-start justify-between">
-                  <div>
-                    <h3 className="font-mono text-xl font-semibold tracking-tight">{d.format}</h3>
-                    <p className="mt-1 text-sm text-[var(--color-muted)]">{t.labels[d.format]}</p>
+        <div className="mt-12 space-y-10">
+          {OS_ORDER.map((os, gi) => {
+            const items = DOWNLOADS.filter((d) => d.os === os);
+            const Logo = OS_ICON[os];
+            return (
+              <Reveal key={os} delay={gi * 0.05}>
+                <div>
+                  <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                    <span className="flex items-center gap-2 text-lg font-semibold tracking-tight">
+                      <Logo
+                        size={22}
+                        weight="fill"
+                        aria-hidden
+                        className="text-[var(--color-teal)]"
+                      />
+                      {t.os[os]}
+                    </span>
+                    <span className="text-sm text-[var(--color-faint)]">{t.osNote[os]}</span>
                   </div>
-                  <span className="rounded-full border border-[var(--color-line)] px-2.5 py-1 text-[11px] text-[var(--color-faint)]">
-                    {d.size}
-                  </span>
-                </div>
 
-                <a
-                  href={d.href}
-                  className="mt-6 inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-teal)] px-4 py-2.5 text-sm font-semibold text-[#04181c] transition-transform duration-150 ease-out hover:brightness-110 active:scale-[0.97]"
-                >
-                  <DownloadSimple size={16} weight="bold" />
-                  {t.cta}
-                </a>
-                <Cmd value={d.install} />
-              </div>
-            </Reveal>
-          ))}
+                  <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    {items.map((d) => (
+                      <div key={d.format} className="card edge-top flex h-full flex-col p-6">
+                        <div className="flex items-start justify-between">
+                          <div>
+                            <h3 className="font-mono text-xl font-semibold tracking-tight">
+                              {d.format}
+                            </h3>
+                            <p className="mt-1 text-sm text-[var(--color-muted)]">
+                              {t.labels[d.format]}
+                            </p>
+                          </div>
+                          <span className="rounded-full border border-[var(--color-line)] px-2.5 py-1 text-[11px] text-[var(--color-faint)]">
+                            {d.size}
+                          </span>
+                        </div>
+
+                        <a
+                          href={d.href}
+                          className="mt-6 inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-teal)] px-4 py-2.5 text-sm font-semibold text-[#04181c] transition-transform duration-150 ease-out hover:brightness-110 active:scale-[0.97]"
+                        >
+                          <DownloadSimple size={16} weight="bold" />
+                          {t.cta}
+                        </a>
+                        {d.install ? <Cmd value={d.install} /> : null}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </Reveal>
+            );
+          })}
         </div>
 
         <Reveal delay={0.08}>
-          <p className="mt-6 text-center text-sm text-[var(--color-faint)]">{t.macosHint}</p>
+          <p className="mt-8 text-center text-sm text-[var(--color-faint)]">{t.unsignedHint}</p>
         </Reveal>
 
         <Reveal delay={0.1}>

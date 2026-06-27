@@ -1,6 +1,6 @@
 // Language-neutral data. All display strings live in src/dictionaries.
 
-export const VERSION = "0.4.1";
+export const VERSION = "0.4.5";
 export const REPO = "https://github.com/QrCommunication/FreeYourDisk";
 export const RELEASE = `${REPO}/releases/tag/v${VERSION}`;
 const ASSET = `${REPO}/releases/download/v${VERSION}`;
@@ -12,6 +12,7 @@ const FILE = {
   deb: `FreeYourDisk_${VERSION}_amd64.deb`,
   rpm: `FreeYourDisk-${VERSION}-1.x86_64.rpm`,
   dmg: `FreeYourDisk_${VERSION}_aarch64.dmg`,
+  exe: `FreeYourDisk_${VERSION}_x64-setup.exe`,
 };
 
 export type Locale = "fr" | "en";
@@ -38,34 +39,51 @@ export function shotSrc(key: ShotKey, locale: Locale): string {
   return asset(`/screenshots/${key}${suffix}.png`);
 }
 
-// Download artifacts — neutral (format, size, URL, install command).
+// Supported operating systems, used to group the downloads by platform so a
+// visitor instantly sees which package targets their OS.
+export type OS = "linux" | "macos" | "windows";
+export const OS_ORDER: OS[] = ["linux", "macos", "windows"];
+
+// Download artifacts — neutral (OS, format, size, URL, optional install command).
 export type DownloadLink = {
+  os: OS;
   format: string;
   size: string;
   href: string;
-  install: string;
+  install?: string;
 };
 
 export const DOWNLOADS: DownloadLink[] = [
   {
+    os: "linux",
     format: "AppImage",
     size: "80 MB",
     href: `${ASSET}/${FILE.appimage}`,
     install: `chmod +x ${FILE.appimage} && ./${FILE.appimage}`,
   },
   {
+    os: "linux",
     format: ".deb",
     size: "4.1 MB",
     href: `${ASSET}/${FILE.deb}`,
     install: `sudo apt install ./${FILE.deb}`,
   },
   {
+    os: "linux",
     format: ".rpm",
     size: "4.1 MB",
     href: `${ASSET}/${FILE.rpm}`,
     install: `sudo dnf install ./${FILE.rpm}`,
   },
   {
+    os: "windows",
+    format: ".exe",
+    size: "4 MB",
+    href: `${ASSET}/${FILE.exe}`,
+    // NSIS installer — just run it (unsigned: SmartScreen › More info › Run anyway).
+  },
+  {
+    os: "macos",
     format: "DMG",
     size: "4.2 MB",
     href: `${ASSET}/${FILE.dmg}`,

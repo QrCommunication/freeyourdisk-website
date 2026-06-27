@@ -3,9 +3,9 @@ import { LEGAL, REPO } from "@/lib/content";
 const fr = {
   langName: "Français",
   meta: {
-    title: "FreeYourDisk — Libérez votre disque Linux, en toute sécurité",
+    title: "FreeYourDisk — Libérez votre disque, en toute sécurité",
     description:
-      "Utilitaire de bureau Linux qui analyse votre disque et libère de l'espace sans risque : caches, gros fichiers, applications, gestionnaire de tâches et santé des disques — autour d'un donut 3D. Open-source, GPL-3.0.",
+      "Utilitaire de bureau pour Linux, macOS et Windows qui analyse votre disque et libère de l'espace sans risque : caches, gros fichiers, applications, gestionnaire de tâches et santé des disques — autour d'un donut 3D. Open-source, GPL-3.0.",
   },
   nav: {
     features: "Fonctionnalités",
@@ -19,10 +19,11 @@ const fr = {
     badge: "Open-source · GPL-3.0",
     titleA: "Libérez votre disque,",
     titleB: "en toute sécurité.",
-    sub: "Un utilitaire de bureau Linux qui analyse votre disque et récupère de l'espace sans risque — caches, gros fichiers, applications, gestionnaire de tâches et santé des disques, autour d'un donut 3D. Corbeille par défaut, zéro suppression à l'aveugle.",
-    ctaDownload: "Télécharger pour Linux",
+    sub: "Un utilitaire de bureau pour Linux, macOS et Windows qui analyse votre disque et récupère de l'espace sans risque — caches, gros fichiers, applications, gestionnaire de tâches et santé des disques, autour d'un donut 3D. Corbeille par défaut, zéro suppression à l'aveugle.",
+    ctaDownload: "Télécharger",
     ctaSource: "Code source",
     trust: ["Sans privilèges root", "Aucune télémétrie", "100 % local"],
+    availableOn: "Disponible sur",
   },
   features: {
     eyebrow: "// Ce qu'il fait",
@@ -31,7 +32,7 @@ const fr = {
     items: [
       { icon: "ChartDonut", wide: true, title: "Scan unifié, donut 3D", body: "Un seul clic lance tous les scans et la répartition par type. Un donut 3D montre l'espace utilisé, récupérable et libre — la couche verte grandit à mesure que vous cochez." },
       { icon: "Broom", wide: false, title: "Catégories de nettoyage", body: "Fichiers temporaires, gros fichiers, worktrees git obsolètes, caches de dev (node_modules, target, .next…) et caches applis & navigateurs régénérables." },
-      { icon: "Package", wide: false, title: "Applications", body: "Inventaire apt / flatpak / snap / AppImage classé par espace, mises à jour détectées à l'ouverture, désinstallation et mise à jour en lot. Les paquets système essentiels sont protégés." },
+      { icon: "Package", wide: false, title: "Applications", body: "Inventaire des applications classé par espace — apt / flatpak / snap / AppImage sur Linux, registre & Microsoft Store sur Windows — mises à jour détectées à l'ouverture, désinstallation et mise à jour en lot. Les composants système essentiels sont protégés." },
       { icon: "Gauge", wide: true, title: "Gestionnaire de tâches", body: "Graphe CPU / RAM / swap temps réel, heatmap d'utilisation par cœur, température, table de processus triable, et un « tuer le plus gros » d'urgence. Raccourci global configurable." },
       { icon: "Heartbeat", wide: false, title: "Santé des disques", body: "SMART par disque via nvme-cli (NVMe) ou smartctl (SATA) — état, heures d'allumage, température — avec des graphes de débit en temps réel. Les outils manquants s'installent en un clic selon votre distribution." },
       { icon: "ShieldCheck", wide: false, title: "Sûr par conception", body: "Scans en lecture seule, aperçu avant suppression, corbeille par défaut, liste blanche de zones, et actions git qui ne touchent jamais au travail non commité." },
@@ -69,20 +70,27 @@ const fr = {
     cta: "Télécharger",
     recommendedPre: "Recommandé pour la santé des disques :",
     releaseNotes: "Notes de version & sommes de contrôle",
-    macosHint:
-      "macOS : build Apple Silicon non signé (bêta). Au 1er lancement, clic droit sur l'app › Ouvrir.",
+    unsignedHint:
+      "Builds macOS et Windows non signés : sur macOS, clic droit sur l'app › Ouvrir ; sur Windows, cliquez « Informations complémentaires » › « Exécuter quand même ».",
+    os: { linux: "Linux", macos: "macOS", windows: "Windows" } as Record<string, string>,
+    osNote: {
+      linux: "x86-64",
+      macos: "Apple Silicon (arm64)",
+      windows: "x64",
+    } as Record<string, string>,
     labels: {
       AppImage: "Universel · toutes distributions",
       ".deb": "Debian · Ubuntu",
       ".rpm": "Fedora · RHEL",
       DMG: "macOS · Apple Silicon (non signé)",
+      ".exe": "Windows 10 / 11 · installeur",
     } as Record<string, string>,
   },
   faq: {
     eyebrow: "// Questions",
     title: "Tout ce qu'il faut savoir",
     items: [
-      { q: "Sur quels systèmes FreeYourDisk fonctionne-t-il ?", a: "Toutes les distributions Linux récentes via l'AppImage, plus des paquets natifs .deb (Debian, Ubuntu) et .rpm (Fedora, RHEL). Un build macOS (Apple Silicon) est aussi disponible — bêta non signée pour l'instant." },
+      { q: "Sur quels systèmes FreeYourDisk fonctionne-t-il ?", a: "Linux, macOS et Windows. Sur Linux : AppImage universel plus paquets natifs .deb (Debian, Ubuntu) et .rpm (Fedora, RHEL). Sur Windows : un installeur (Windows 10/11, x64). Sur macOS : un build Apple Silicon. Les builds macOS et Windows sont des bêtas non signées pour l'instant." },
       { q: "Mes fichiers peuvent-ils être supprimés par erreur ?", a: "Les scans sont en lecture seule, chaque suppression montre un aperçu exact et passe par la corbeille récupérable par défaut. Les zones supprimables sont sur liste blanche et les worktrees git non commités ne sont jamais touchés." },
       { q: "L'application a-t-elle besoin des droits root ?", a: "Non pour l'usage courant. L'interface tourne en utilisateur normal ; un helper minimal est invoqué via Polkit uniquement pour les rares actions privilégiées (lecture SMART NVMe, /var/tmp, paquets apt/snap)." },
       { q: "Est-ce gratuit et open-source ?", a: "Oui. FreeYourDisk est publié sous licence GPL-3.0-or-later. Le code complet est sur GitHub." },
@@ -90,7 +98,7 @@ const fr = {
     ],
   },
   footer: {
-    tagline: "Libérez votre disque Linux, en toute sécurité. Open-source, sous licence GPL-3.0.",
+    tagline: "Libérez votre disque, en toute sécurité. Open-source, sous licence GPL-3.0.",
     cols: [
       { title: "Produit", links: [
         { label: "Fonctionnalités", href: "#features", external: false },
@@ -110,7 +118,7 @@ const fr = {
       ]},
     ],
     rights: "GPL-3.0-or-later",
-    noData: "Conçu pour Linux. Aucune donnée collectée.",
+    noData: "Conçu pour Linux, macOS et Windows. Aucune donnée collectée.",
   },
   legalLinks: { notice: "Mentions légales", privacy: "Confidentialité" },
   legal: {
