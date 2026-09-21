@@ -24,6 +24,34 @@ const fr = {
     ctaSource: "Code source",
     trust: ["Sans privilèges root", "Aucune télémétrie", "100 % local"],
     availableOn: "Disponible sur",
+    downloadFor: "Télécharger pour",
+    hint: "Aperçu interactif — dans l'application, le donut est en 3D.",
+    marquee: [
+      "Fichiers temporaires",
+      "Gros fichiers",
+      "Worktrees git",
+      "Caches de dev",
+      "Caches applis & navigateurs",
+      "Applications",
+      "Santé des disques",
+      "Gestionnaire de tâches",
+    ],
+    demo: {
+      title: "Le donut qui se remplit",
+      total: "Disque",
+      used: "Utilisé",
+      reclaimable: "Récupérable",
+      selected: "Sélectionné",
+      toReclaim: "récupérables",
+      selectedLabel: "sélectionnés",
+      rows: [
+        { label: "Caches de dev", gb: 128 },
+        { label: "Fichiers temporaires", gb: 41 },
+        { label: "Caches navigateur", gb: 35 },
+      ],
+      footnote:
+        "Exemple sur un disque fictif de 913 GB — dans l'application, le donut est en 3D et reflète votre disque réel.",
+    },
   },
   features: {
     eyebrow: "// Ce qu'il fait",
@@ -68,6 +96,8 @@ const fr = {
     titleA: "Installez FreeYourDisk",
     sub: "Gratuit et open-source. Choisissez le format adapté à votre système.",
     cta: "Télécharger",
+    forYou: "Recommandé pour votre système",
+    other: "Autres systèmes",
     recommendedPre: "Recommandé pour la santé des disques :",
     releaseNotes: "Notes de version & sommes de contrôle",
     unsignedHint:

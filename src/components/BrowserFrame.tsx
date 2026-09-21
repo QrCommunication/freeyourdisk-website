@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 // Window chrome around a real app screenshot — sells "this is a desktop app"
-// without faking anything.
+// without faking anything. Light chrome, dark capture: maximum contrast.
 export default function BrowserFrame({
   src,
   alt,
@@ -12,12 +12,12 @@ export default function BrowserFrame({
   priority?: boolean;
 }) {
   return (
-    <div className="card edge-top overflow-hidden shadow-[0_30px_80px_-30px_rgba(0,0,0,0.7)]">
-      <div className="flex items-center gap-2 border-b border-[var(--color-line)] bg-[var(--color-elevated)] px-4 py-2.5">
-        <span className="size-3 rounded-full bg-[#ff5f57]" />
-        <span className="size-3 rounded-full bg-[#febc2e]" />
-        <span className="size-3 rounded-full bg-[#28c840]" />
-        <span className="ml-3 font-mono text-[11px] text-[var(--color-faint)]">FreeYourDisk</span>
+    <div className="overflow-hidden rounded-2xl border border-line bg-night shadow-[0_40px_90px_-35px_rgba(19,22,27,0.45)]">
+      <div className="flex items-center gap-2 border-b border-night-line bg-night-2 px-4 py-2.5">
+        <span className="size-2.5 rounded-full bg-[#5a6270]" />
+        <span className="size-2.5 rounded-full bg-[#5a6270]" />
+        <span className="size-2.5 rounded-full bg-[#5a6270]" />
+        <span className="ml-3 font-mono text-[11px] text-[#8b93a1]">FreeYourDisk</span>
       </div>
       <Image
         src={src}

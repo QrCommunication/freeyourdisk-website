@@ -50,7 +50,7 @@ export async function generateMetadata({
 }
 
 export const viewport: Viewport = {
-  themeColor: "#080b11",
+  themeColor: "#f5f4f0",
   width: "device-width",
   initialScale: 1,
 };

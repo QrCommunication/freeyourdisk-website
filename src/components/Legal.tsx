@@ -16,20 +16,24 @@ export default function Legal({
   const intro = doc === "privacy" ? dict.legal.privacy.intro : null;
 
   return (
-    <main className="px-5 pt-32 pb-24 md:pt-40">
+    <main className="px-5 pt-16 pb-24">
       <article className="mx-auto max-w-3xl">
         <Link
           href={`/${locale}`}
-          className="inline-flex items-center gap-1.5 text-sm text-[var(--color-muted)] transition-colors hover:text-ink"
+          className="inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-ink"
         >
           <ArrowLeft size={15} />
           {dict.legal.back}
         </Link>
 
-        <h1 className="mt-6 text-4xl font-semibold tracking-tight md:text-5xl">{page.title}</h1>
-        <p className="mt-3 text-sm text-[var(--color-faint)]">{dict.legal.updated}</p>
+        <div className="mt-6 border-b border-line pb-8">
+          <h1 className="text-4xl font-semibold tracking-[-0.03em] md:text-5xl">{page.title}</h1>
+          <p className="mt-3 font-mono text-xs uppercase tracking-widest text-faint">
+            {dict.legal.updated}
+          </p>
+        </div>
 
-        <div className="mt-10 space-y-3 leading-relaxed text-[var(--color-muted)] [&_h2]:mt-10 [&_h2]:mb-3 [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:text-ink [&_li]:my-1 [&_ul]:list-disc [&_ul]:space-y-1 [&_ul]:pl-5">
+        <div className="mt-10 space-y-3 leading-relaxed text-muted [&_h2]:mt-10 [&_h2]:mb-3 [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:tracking-tight [&_h2]:text-ink [&_li]:my-1 [&_ul]:list-disc [&_ul]:space-y-1 [&_ul]:pl-5">
           {intro && <p className="text-lg text-ink">{intro}</p>}
           {page.blocks.map((b) => (
             <section key={b.h}>

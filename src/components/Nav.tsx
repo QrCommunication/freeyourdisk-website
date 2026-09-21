@@ -9,16 +9,16 @@ import type { Dictionary } from "@/dictionaries";
 import { REPO, VERSION, type Locale } from "@/lib/content";
 
 export default function Nav({ dict, locale }: { dict: Dictionary; locale: Locale }) {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
+  // Lock body scroll while the mobile menu is open.
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   const home = `/${locale}`;
   const links = [
@@ -32,46 +32,36 @@ export default function Nav({ dict, locale }: { dict: Dictionary; locale: Locale
   const switchTo = (l: Locale) => `/${l}${rest}`;
 
   return (
-    <header className="fixed inset-x-3 top-3 z-50 md:inset-x-4 md:top-4">
-      <nav
-        className={`mx-auto flex max-w-6xl items-center justify-between rounded-2xl px-4 py-2.5 transition-colors duration-300 md:px-5 ${
-          scrolled
-            ? "border border-[var(--color-line)] bg-[color-mix(in_oklch,var(--color-base)_72%,transparent)] backdrop-blur-xl"
-            : "border border-transparent"
-        }`}
-      >
-        <Link href={home} className="flex items-center gap-2.5">
-          <Logo size={30} />
+    <header className="sticky top-0 z-50 border-b border-line bg-paper/85 backdrop-blur-xl">
+      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-6 px-5">
+        <Link href={home} className="flex shrink-0 items-center gap-2.5">
+          <Logo size={28} />
           <span className="font-semibold tracking-tight">FreeYourDisk</span>
-          <span className="hidden rounded-full border border-[var(--color-line)] px-2 py-0.5 font-mono text-[10px] text-[var(--color-muted)] sm:inline">
-            v{VERSION}
-          </span>
+          <span className="hidden font-mono text-[10px] text-faint sm:inline">v{VERSION}</span>
         </Link>
 
-        <div className="hidden items-center gap-1 md:flex">
+        <div className="hidden items-center gap-6 lg:flex">
           {links.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className="rounded-lg px-3 py-2 text-sm text-[var(--color-muted)] transition-colors hover:text-ink"
+              className="text-sm text-muted transition-colors hover:text-ink"
             >
               {l.label}
             </Link>
           ))}
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2.5">
           {/* Language switcher */}
-          <div className="flex items-center rounded-lg border border-[var(--color-line)] p-0.5 text-xs font-medium">
+          <div className="flex items-center rounded-full border border-line p-0.5 text-[11px] font-medium">
             {(["fr", "en"] as Locale[]).map((l) => (
               <Link
                 key={l}
                 href={switchTo(l)}
                 aria-label={l === "fr" ? "Français" : "English"}
-                className={`rounded-md px-2 py-1 uppercase transition-colors ${
-                  l === locale
-                    ? "bg-[var(--color-elevated)] text-ink"
-                    : "text-[var(--color-faint)] hover:text-ink"
+                className={`rounded-full px-2.5 py-1 uppercase transition-colors ${
+                  l === locale ? "bg-ink text-paper" : "text-faint hover:text-ink"
                 }`}
               >
                 {l}
@@ -84,21 +74,22 @@ export default function Nav({ dict, locale }: { dict: Dictionary; locale: Locale
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
-            className="hidden size-9 items-center justify-center rounded-lg text-[var(--color-muted)] transition-colors hover:bg-[var(--color-elevated)] hover:text-ink sm:flex"
+            className="hidden size-9 items-center justify-center rounded-full text-muted transition-colors hover:bg-paper-2 hover:text-ink sm:flex"
           >
-            <GithubLogo size={20} />
+            <GithubLogo size={19} />
           </a>
           <Link
             href={`${home}#download`}
-            className="hidden items-center gap-1.5 rounded-lg bg-[var(--color-teal)] px-3.5 py-2 text-sm font-semibold text-[#04181c] transition-transform duration-150 ease-out hover:brightness-110 active:scale-[0.97] sm:flex"
+            className="hidden items-center gap-1.5 rounded-full bg-ink px-4 py-2 text-sm font-medium text-paper transition-colors hover:bg-teal-deep sm:flex"
           >
-            <DownloadSimple size={16} weight="bold" />
+            <DownloadSimple size={15} weight="bold" />
             {dict.nav.cta}
           </Link>
           <button
             onClick={() => setOpen((v) => !v)}
             aria-label="Menu"
-            className="flex size-9 items-center justify-center rounded-lg text-ink md:hidden"
+            aria-expanded={open}
+            className="flex size-9 items-center justify-center rounded-full text-ink lg:hidden"
           >
             {open ? <X size={20} /> : <List size={20} />}
           </button>
@@ -106,13 +97,13 @@ export default function Nav({ dict, locale }: { dict: Dictionary; locale: Locale
       </nav>
 
       {open && (
-        <div className="mx-auto mt-2 max-w-6xl rounded-2xl border border-[var(--color-line)] bg-[color-mix(in_oklch,var(--color-base)_92%,transparent)] p-2 backdrop-blur-xl md:hidden">
+        <div className="border-t border-line bg-paper px-5 py-3 md:hidden">
           {links.map((l) => (
             <Link
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="block rounded-lg px-3 py-2.5 text-sm text-[var(--color-muted)] transition-colors hover:bg-[var(--color-elevated)] hover:text-ink"
+              className="block border-b border-line py-3.5 text-sm text-muted last:border-0 transition-colors hover:text-ink"
             >
               {l.label}
             </Link>

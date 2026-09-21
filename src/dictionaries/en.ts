@@ -25,6 +25,34 @@ const en: Dictionary = {
     ctaSource: "Source code",
     trust: ["No root privileges", "No telemetry", "100% local"],
     availableOn: "Available on",
+    downloadFor: "Download for",
+    hint: "Interactive preview — in the app, the donut is 3D.",
+    marquee: [
+      "Temporary files",
+      "Large files",
+      "Git worktrees",
+      "Dev caches",
+      "App & browser caches",
+      "Applications",
+      "Disk health",
+      "Task manager",
+    ],
+    demo: {
+      title: "The donut that fills up",
+      total: "Disk",
+      used: "Used",
+      reclaimable: "Reclaimable",
+      selected: "Selected",
+      toReclaim: "reclaimable",
+      selectedLabel: "selected",
+      rows: [
+        { label: "Dev caches", gb: 128 },
+        { label: "Temporary files", gb: 41 },
+        { label: "Browser caches", gb: 35 },
+      ],
+      footnote:
+        "Example on a fictional 913 GB disk — in the app, the donut is 3D and reflects your real disk.",
+    },
   },
   features: {
     eyebrow: "// What it does",
@@ -69,6 +97,8 @@ const en: Dictionary = {
     titleA: "Install FreeYourDisk",
     sub: "Free and open-source. Pick the format for your system.",
     cta: "Download",
+    forYou: "Recommended for your system",
+    other: "Other systems",
     recommendedPre: "Recommended for disk health:",
     releaseNotes: "Release notes & checksums",
     unsignedHint:
