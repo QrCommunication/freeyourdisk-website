@@ -1,17 +1,20 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import type { OS } from "./content";
 
-// Best-effort visitor OS from the user agent, resolved after mount so the
-// server render (Linux default) and the client agree during hydration.
+// User agents remain stable for a page's lifetime, so no change listener is
+// needed. The server snapshot also supplies the initial hydration value.
+const subscribe = () => () => {};
+const getServerSnapshot = (): OS => "linux";
+
+function getSnapshot(): OS {
+  const ua = navigator.userAgent;
+  if (/Mac|iPhone|iPad/i.test(ua)) return "macos";
+  if (/Win/i.test(ua)) return "windows";
+  return "linux";
+}
+
 export function useOs(): OS {
-  const [os, setOs] = useState<OS>("linux");
-  useEffect(() => {
-    const ua = navigator.userAgent;
-    if (/Mac|iPhone|iPad/i.test(ua)) setOs("macos");
-    else if (/Win/i.test(ua)) setOs("windows");
-    else setOs("linux");
-  }, []);
-  return os;
+  return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 }

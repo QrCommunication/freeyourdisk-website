@@ -1,6 +1,6 @@
 // Language-neutral data. All display strings live in src/dictionaries.
 
-export const VERSION = "0.4.5";
+export const VERSION = "0.6.5";
 export const REPO = "https://github.com/QrCommunication/FreeYourDisk";
 export const RELEASE = `${REPO}/releases/tag/v${VERSION}`;
 const ASSET = `${REPO}/releases/download/v${VERSION}`;
@@ -11,7 +11,8 @@ const FILE = {
   appimage: `FreeYourDisk_${VERSION}_amd64.AppImage`,
   deb: `FreeYourDisk_${VERSION}_amd64.deb`,
   rpm: `FreeYourDisk-${VERSION}-1.x86_64.rpm`,
-  dmg: `FreeYourDisk_${VERSION}_aarch64.dmg`,
+  dmgAppleSilicon: `FreeYourDisk_${VERSION}_aarch64.dmg`,
+  dmgIntel: `FreeYourDisk_${VERSION}_x86_64.dmg`,
   exe: `FreeYourDisk_${VERSION}_x64-setup.exe`,
 };
 
@@ -22,8 +23,7 @@ export const DEFAULT_LOCALE: Locale = "en";
 // Version-stamp static assets so caches always serve the current file.
 export const asset = (path: string) => `${path}?v=${VERSION}`;
 
-// Screenshot source for a given panel, localised (French is the base set,
-// English adds an "-en" suffix).
+// French is the base set; English adds "-en". Both themes are native captures.
 export const SHOT_KEYS = [
   "home",
   "taskmanager",
@@ -33,10 +33,13 @@ export const SHOT_KEYS = [
   "settings",
 ] as const;
 export type ShotKey = (typeof SHOT_KEYS)[number];
+export type ShotTheme = "light" | "dark";
+export const SHOT_WIDTH = 1180;
+export const SHOT_HEIGHT = 760;
 
-export function shotSrc(key: ShotKey, locale: Locale): string {
+export function shotSrc(key: ShotKey, locale: Locale, theme: ShotTheme = "light"): string {
   const suffix = locale === "en" ? "-en" : "";
-  return asset(`/screenshots/${key}${suffix}.png`);
+  return asset(`/screenshots/${key}${suffix}-${theme}.png`);
 }
 
 // Supported operating systems, used to group the downloads by platform so a
@@ -48,7 +51,7 @@ export const OS_ORDER: OS[] = ["linux", "macos", "windows"];
 export type DownloadLink = {
   os: OS;
   format: string;
-  size: string;
+  size?: string;
   href: string;
   install?: string;
 };
@@ -57,38 +60,36 @@ export const DOWNLOADS: DownloadLink[] = [
   {
     os: "linux",
     format: "AppImage",
-    size: "80 MB",
     href: `${ASSET}/${FILE.appimage}`,
     install: `chmod +x ${FILE.appimage} && ./${FILE.appimage}`,
   },
   {
     os: "linux",
     format: ".deb",
-    size: "4.1 MB",
     href: `${ASSET}/${FILE.deb}`,
     install: `sudo apt install ./${FILE.deb}`,
   },
   {
     os: "linux",
     format: ".rpm",
-    size: "4.1 MB",
     href: `${ASSET}/${FILE.rpm}`,
     install: `sudo dnf install ./${FILE.rpm}`,
   },
   {
     os: "windows",
     format: ".exe",
-    size: "4 MB",
     href: `${ASSET}/${FILE.exe}`,
     // NSIS installer — just run it (unsigned: SmartScreen › More info › Run anyway).
   },
   {
     os: "macos",
-    format: "DMG",
-    size: "4.2 MB",
-    href: `${ASSET}/${FILE.dmg}`,
-    // Unsigned build: clear the quarantine flag (or right-click → Open once).
-    install: `xattr -dr com.apple.quarantine /Applications/FreeYourDisk.app`,
+    format: "DMG · Apple Silicon",
+    href: `${ASSET}/${FILE.dmgAppleSilicon}`,
+  },
+  {
+    os: "macos",
+    format: "DMG · Intel",
+    href: `${ASSET}/${FILE.dmgIntel}`,
   },
 ];
 

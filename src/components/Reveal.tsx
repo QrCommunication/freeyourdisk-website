@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { useEffect, useRef, type CSSProperties, type ReactNode } from "react";
 
 // Scroll reveal that degrades gracefully: the content renders visible on the
 // server and for no-JS visitors. JS only "arms" the hidden→visible transition
@@ -18,25 +18,28 @@ export default function Reveal({
   className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [armed, setArmed] = useState(false);
-  const [shown, setShown] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return; // stay visible
-    setArmed(true);
+    if (!("IntersectionObserver" in window)) return; // stay visible
     const io = new IntersectionObserver(
       (entries) => {
         if (entries[0]?.isIntersecting) {
-          setShown(true);
+          el.dataset.shown = "true";
           io.disconnect();
         }
       },
       { rootMargin: "0px 0px -80px 0px" },
     );
     io.observe(el);
-    return () => io.disconnect();
+    el.dataset.armed = "true";
+    return () => {
+      io.disconnect();
+      delete el.dataset.armed;
+      delete el.dataset.shown;
+    };
   }, []);
 
   const style = { "--rv-delay": `${delay}s`, "--rv-y": `${y}px` } as CSSProperties;
@@ -45,8 +48,6 @@ export default function Reveal({
     <div
       ref={ref}
       data-reveal
-      data-armed={armed ? "true" : undefined}
-      data-shown={shown ? "true" : undefined}
       style={style}
       className={className}
     >

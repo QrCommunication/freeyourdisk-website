@@ -1,7 +1,8 @@
 import Image from "next/image";
+import { SHOT_HEIGHT, SHOT_WIDTH } from "@/lib/content";
 
 // Window chrome around a real app screenshot — sells "this is a desktop app"
-// without faking anything. Light chrome, dark capture: maximum contrast.
+// without faking anything. Native captures preserve their original ratio.
 export default function BrowserFrame({
   src,
   alt,
@@ -22,8 +23,8 @@ export default function BrowserFrame({
       <Image
         src={src}
         alt={alt}
-        width={1200}
-        height={760}
+        width={SHOT_WIDTH}
+        height={SHOT_HEIGHT}
         priority={priority}
         sizes="(max-width: 1024px) 100vw, 720px"
         className="h-auto w-full"

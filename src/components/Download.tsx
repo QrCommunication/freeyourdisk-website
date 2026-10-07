@@ -89,9 +89,11 @@ function OsGroup({
                 <h3 className="font-mono text-xl font-semibold tracking-tight">{d.format}</h3>
                 <p className="mt-1 text-sm text-muted">{t.labels[d.format]}</p>
               </div>
-              <span className="rounded-full border border-line px-2.5 py-1 font-mono text-[11px] text-faint">
-                {d.size}
-              </span>
+              {d.size && (
+                <span className="rounded-full border border-line px-2.5 py-1 font-mono text-[11px] text-faint">
+                  {d.size}
+                </span>
+              )}
             </div>
 
             <a

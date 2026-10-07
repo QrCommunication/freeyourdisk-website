@@ -5,11 +5,12 @@ import { AnimatePresence, motion } from "motion/react";
 import BrowserFrame from "./BrowserFrame";
 import Reveal from "./Reveal";
 import type { Dictionary } from "@/dictionaries";
-import { shotSrc, type Locale, type ShotKey } from "@/lib/content";
+import { shotSrc, type Locale, type ShotKey, type ShotTheme } from "@/lib/content";
 
 export default function Screenshots({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   const shots = dict.preview.shots;
   const [active, setActive] = useState(0);
+  const [theme, setTheme] = useState<ShotTheme>("light");
   const shot = shots[active];
 
   return (
@@ -27,6 +28,27 @@ export default function Screenshots({ dict, locale }: { dict: Dictionary; locale
               <h2 className="mt-4 text-3xl font-semibold tracking-[-0.03em] text-balance md:text-5xl">
                 {dict.preview.title}
               </h2>
+            </div>
+            <div
+              role="group"
+              aria-label={dict.preview.themeLabel}
+              className="flex w-fit items-center gap-1 rounded-full border border-line bg-paper p-1 lg:justify-self-end"
+            >
+              {(["light", "dark"] as const).map((option) => (
+                <button
+                  key={option}
+                  type="button"
+                  aria-pressed={theme === option}
+                  onClick={() => setTheme(option)}
+                  className={`rounded-full px-4 py-2 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-deep ${
+                    theme === option
+                      ? "bg-ink text-paper"
+                      : "text-muted hover:bg-surface hover:text-ink"
+                  }`}
+                >
+                  {dict.preview[option]}
+                </button>
+              ))}
             </div>
           </div>
         </Reveal>
@@ -77,13 +99,16 @@ export default function Screenshots({ dict, locale }: { dict: Dictionary; locale
           <div>
             <AnimatePresence mode="wait">
               <motion.div
-                key={shot.key}
-                initial={{ opacity: 0, scale: 0.985 }}
+                key={`${shot.key}-${theme}`}
+                initial={false}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.99 }}
                 transition={{ duration: 0.32, ease: [0.23, 1, 0.32, 1] }}
               >
-                <BrowserFrame src={shotSrc(shot.key as ShotKey, locale)} alt={shot.title} />
+                <BrowserFrame
+                  src={shotSrc(shot.key as ShotKey, locale, theme)}
+                  alt={`${shot.title} · ${dict.preview[theme]}`}
+                />
               </motion.div>
             </AnimatePresence>
             <p className="mt-4 flex items-baseline gap-3 text-sm text-muted lg:hidden">

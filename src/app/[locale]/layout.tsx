@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { notFound } from "next/navigation";
-import { LOCALES, REPO, shotSrc, type Locale } from "@/lib/content";
+import { LOCALES, REPO, SHOT_HEIGHT, SHOT_WIDTH, shotSrc, type Locale } from "@/lib/content";
 import { getDictionary } from "@/dictionaries";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
@@ -33,7 +33,7 @@ export async function generateMetadata({
       title: dict.meta.title,
       description: dict.meta.description,
       siteName: "FreeYourDisk",
-      images: [{ url: shotSrc("home", l), width: 1200, height: 760, alt: "FreeYourDisk" }],
+      images: [{ url: shotSrc("home", l), width: SHOT_WIDTH, height: SHOT_HEIGHT, alt: "FreeYourDisk" }],
     },
     twitter: {
       card: "summary_large_image",
