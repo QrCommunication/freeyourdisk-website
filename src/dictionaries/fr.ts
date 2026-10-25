@@ -5,7 +5,7 @@ const fr = {
   meta: {
     title: "FreeYourDisk — Libérez votre disque, en toute sécurité",
     description:
-      "FreeYourDisk 0.6.5 : analyse et nettoyage du disque, applications et mises à jour à la demande, gestionnaire de tâches et santé des disques sur Linux, macOS et Windows. Open-source, GPL-3.0.",
+      "FreeYourDisk 0.6.6 : analyse et nettoyage du disque, applications et mises à jour à la demande, gestionnaire de tâches et santé des disques sur Linux, macOS et Windows. Open-source, GPL-3.0.",
   },
   nav: {
     features: "Fonctionnalités",
@@ -97,7 +97,7 @@ const fr = {
   download: {
     eyebrow: "// Télécharger",
     titleA: "Installez FreeYourDisk",
-    sub: "Version 0.6.5, gratuite et open-source. Choisissez le format et l'architecture adaptés à votre système.",
+    sub: "Version 0.6.6, gratuite et open-source. Choisissez le format et l'architecture adaptés à votre système.",
     cta: "Télécharger",
     forYou: "Recommandé pour votre système",
     other: "Autres systèmes",
@@ -124,7 +124,7 @@ const fr = {
     eyebrow: "// Questions",
     title: "Tout ce qu'il faut savoir",
     items: [
-      { q: "Sur quels systèmes FreeYourDisk fonctionne-t-il ?", a: "La version 0.6.5 est disponible pour Linux x86-64 en .deb, .rpm et AppImage ; Windows 10/11 x64 en .exe ; et macOS en DMG pour Apple Silicon ou Intel. Les DMG sont signés et notarisés. L'installeur Windows n'est pas signé et peut déclencher SmartScreen." },
+      { q: "Sur quels systèmes FreeYourDisk fonctionne-t-il ?", a: "La version 0.6.6 est disponible pour Linux x86-64 en .deb, .rpm et AppImage ; Windows 10/11 x64 en .exe ; et macOS en DMG pour Apple Silicon ou Intel. Les DMG sont signés et notarisés. L'installeur Windows n'est pas signé et peut déclencher SmartScreen." },
       { q: "Mes fichiers peuvent-ils être supprimés par erreur ?", a: "Les scans sont en lecture seule, chaque suppression montre un aperçu exact et passe par la corbeille récupérable par défaut. Les zones supprimables sont sur liste blanche et les worktrees git non commités ne sont jamais touchés." },
       { q: "L'application a-t-elle besoin des droits administrateur ?", a: "Pas pour les analyses courantes. Certaines lectures SMART, opérations de nettoyage système ou actions sur les paquets peuvent demander une autorisation. Sous Linux, un helper limité utilise Polkit ; les autres systèmes suivent leurs propres mécanismes d'autorisation. L'interface reste exécutée sous votre compte utilisateur." },
       { q: "Comment sont vérifiées les mises à jour des applications ?", a: "Ouvrir l'onglet Applications charge uniquement l'inventaire. Le bouton de vérification interroge ensuite les gestionnaires disponibles : APT, Flatpak et Snap sous Linux, winget sous Windows, Homebrew sous macOS. Seules les mises à jour prises en charge sont proposées. Les AppImage et les applications installées manuellement ne sont pas mises à jour automatiquement." },

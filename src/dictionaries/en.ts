@@ -6,7 +6,7 @@ const en: Dictionary = {
   meta: {
     title: "FreeYourDisk — Free your disk, safely",
     description:
-      "FreeYourDisk 0.6.5: disk analysis and cleanup, applications and on-demand updates, task manager and disk health for Linux, macOS and Windows. Open-source, GPL-3.0.",
+      "FreeYourDisk 0.6.6: disk analysis and cleanup, applications and on-demand updates, task manager and disk health for Linux, macOS and Windows. Open-source, GPL-3.0.",
   },
   nav: {
     features: "Features",
@@ -98,7 +98,7 @@ const en: Dictionary = {
   download: {
     eyebrow: "// Download",
     titleA: "Install FreeYourDisk",
-    sub: "Version 0.6.5, free and open-source. Pick the format and architecture for your system.",
+    sub: "Version 0.6.6, free and open-source. Pick the format and architecture for your system.",
     cta: "Download",
     forYou: "Recommended for your system",
     other: "Other systems",
@@ -125,7 +125,7 @@ const en: Dictionary = {
     eyebrow: "// Questions",
     title: "Everything you need to know",
     items: [
-      { q: "Which systems does FreeYourDisk run on?", a: "Version 0.6.5 is available for Linux x86-64 as .deb, .rpm and AppImage; Windows 10/11 x64 as .exe; and macOS as DMG for Apple Silicon or Intel. The DMGs are signed and notarized. The Windows installer is unsigned and may trigger SmartScreen." },
+      { q: "Which systems does FreeYourDisk run on?", a: "Version 0.6.6 is available for Linux x86-64 as .deb, .rpm and AppImage; Windows 10/11 x64 as .exe; and macOS as DMG for Apple Silicon or Intel. The DMGs are signed and notarized. The Windows installer is unsigned and may trigger SmartScreen." },
       { q: "Can my files be deleted by mistake?", a: "Scans are read-only, every deletion shows an exact preview and goes to the recoverable trash by default. Deletable zones are whitelisted and uncommitted git worktrees are never touched." },
       { q: "Does the app need administrator rights?", a: "Not for routine scans. Some SMART reads, system cleanup operations or package actions may request authorization. On Linux, a limited helper uses Polkit; other systems follow their own authorization mechanisms. The interface continues to run under your user account." },
       { q: "How are application updates checked?", a: "Opening the Applications tab loads only the inventory. The check button then queries available package managers: APT, Flatpak and Snap on Linux, winget on Windows, and Homebrew on macOS. Only supported updates are offered. AppImages and manually installed applications are not automatically updated." },
