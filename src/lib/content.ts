@@ -1,6 +1,6 @@
 // Language-neutral data. All display strings live in src/dictionaries.
 
-export const VERSION = "0.6.7";
+export const VERSION = "0.6.8";
 export const REPO = "https://github.com/QrCommunication/FreeYourDisk";
 export const RELEASE = `${REPO}/releases/tag/v${VERSION}`;
 const ASSET = `${REPO}/releases/download/v${VERSION}`;
